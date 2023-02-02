@@ -39,7 +39,7 @@ const SingleTrip = ({trip, tripsData, setUserData, amadeus}) => {
                 </div>
                 <div className={"d-flex justify-content-between m-0"}>
                     <div><span style={{fontWeight: 'bold'}}>Duration: </span>{`${moment(startDate,"YYYY MM DD").format("ll")} to ${moment(endDate,"YYYY MM DD").format("ll")}`}</div>
-                    <div><span style={{fontWeight: 'bold'}}>Total Cost: </span> {totalCost} USD</div>
+                    <div><span style={{fontWeight: 'bold'}}>Total Cost: </span> {totalCost} AUD</div>
                 </div>
                 {goal? <p className={"pt-2"}><span style={{fontWeight: 'bold'}}>Goals: </span>{goal}</p>:<></>}
                 

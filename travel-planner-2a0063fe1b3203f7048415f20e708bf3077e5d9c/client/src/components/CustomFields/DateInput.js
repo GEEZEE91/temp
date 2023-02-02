@@ -15,7 +15,7 @@ const DateInput = ({type, name, searchData, setSearchData, isRequired}) => {
     }
 
     const handleSave = () =>{
-        const inputDate = moment(date, 'MM-DD-YYYY');
+        const inputDate = moment(date, 'DD-MM-YYYY');
         if (inputDate.isValid()) setSearchData({...searchData, [name]: inputDate.format('YYYY-MM-DD')});
         else {
             if (isRequired || date){
@@ -36,7 +36,7 @@ const DateInput = ({type, name, searchData, setSearchData, isRequired}) => {
             fluid 
             label={`${type} date`} 
             value={date}
-            placeholder='MM-DD-YYYY'
+            placeholder='DD-MM-YYYY'
             onChange={handleChange}
             onBlur={handleSave}
             error={error}

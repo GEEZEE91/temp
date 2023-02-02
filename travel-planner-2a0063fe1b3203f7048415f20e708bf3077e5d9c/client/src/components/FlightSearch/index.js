@@ -5,7 +5,7 @@ import DateInput from '../CustomFields/DateInput';
 import NumberInput from '../CustomFields/NumberInput';
 
 const FlightSearchForm = ({amadeus, setSearchResult})=>{
-    const [searchData, setSearchData] = useState({currencyCode:'USD'});
+    const [searchData, setSearchData] = useState({currencyCode:'AUD'});
     // The object that'll hold all the query parameter
     const [isLoading, setLoading]=useState(false);
     // State to display if the form is loading

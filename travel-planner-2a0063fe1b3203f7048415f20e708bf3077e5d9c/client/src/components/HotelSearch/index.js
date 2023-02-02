@@ -5,7 +5,7 @@ import DateInput from '../CustomFields/DateInput';
 import NumberInput from '../CustomFields/NumberInput';
 
 const HotelSearchForm = ({amadeus, setSearchResult})=>{
-    const [searchData, setSearchData] = useState({radius:'20' ,currencyCode:'USD'});
+    const [searchData, setSearchData] = useState({radius:'20' ,currencyCode:'AUD'});
     // The object that'll hold all the query parameter. Preset to at most 20km away from airport
     const [isLoading, setLoading]=useState(false);
     // State to display if the form is loading
@@ -29,7 +29,7 @@ const HotelSearchForm = ({amadeus, setSearchResult})=>{
     const handleSubmit = ()=>{
         // if (searchData.originLocationCode && searchData.destinationLocationCode && searchData.departureDate && searchData.adults){
             setLoading(true);
-            amadeus.shopping.hotelOffers.get(searchData)
+            amadeus.referenceData.locations.hotels.byCity.get(searchData)
                 .then(({data}) => {
                     // clean up duplicate price options, as the API has sorted the cheapest with shortest travel time option first
                     // duplicate option is redundant

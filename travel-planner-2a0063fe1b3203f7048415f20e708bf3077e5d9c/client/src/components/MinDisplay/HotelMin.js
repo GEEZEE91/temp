@@ -30,7 +30,7 @@ const HotelMin = ({savedDetail, activeIndex, setActiveIndex, id, tripsData, setU
             <Accordion.Title active = {activeIndex === id} index={id} onClick={handleClick} className={"p-0"}>
             <div className={"card-header py-2"}>
                 <div className={"d-flex justify-content-between m-0"}>
-                    <h3 className={"m-0 pt-1"}>{name}, {cost} USD</h3>
+                    <h3 className={"m-0 pt-1"}>{name}, {cost} AUD</h3>
                     <div>
                         <Button circular icon='trash' onClick={handleDelete}  size='mini'/>
                     </div>
