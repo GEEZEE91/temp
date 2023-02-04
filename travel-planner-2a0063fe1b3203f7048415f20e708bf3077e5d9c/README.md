@@ -1,8 +1,8 @@
-# Trip Planner
+# Traveller Mate
 
-Live URL: https://still-taiga-93727.herokuapp.com/ 
+Live URL: ???
 
-![Screenshot](./client/public/images/Preview1.png)
+![Screenshot](./client/public/images/Landing-Page.png)
 ![Screenshot](./client/public/images/Preview2.png)
 
 # Desciption
@@ -18,16 +18,16 @@ This app powered by [Amadeus](https://www.npmjs.com/package/amadeus), proving re
 To use this application, it's required to have node.js installed. Which can be found in their [website](https://nodejs.org/en/download/).
 
 Once you have cloned the files and had node.js installed, install the needed packages by:
- 
+
     npm install
 
 ## Usage
 
 To start the application, just type the following into the command line in the base directory
- 
+
     npm start
 
-The server and the client will run on your local machine. The graphQL playground will be available on http://localhost:3001/graphql while the front end is available on http://localhost:3000/ 
+The server and the client will run on your local machine. The graphQL playground will be available on http://localhost:3001/graphql while the front end is available on http://localhost:3000/
 
 ## Development notes
 

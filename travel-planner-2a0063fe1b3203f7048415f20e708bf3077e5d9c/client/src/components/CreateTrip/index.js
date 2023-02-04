@@ -54,7 +54,7 @@ const TripForm = ({ userData, setUserData }) => {
       onOpen={() => setOpen(true)}
       open={open}
       style={inlineStyle.modal}
-      trigger={<Button className={"btn-cust"}> + Add Trip</Button>}
+      trigger={<Button className={"btn-cust ad_trip"}> + Add Trip</Button>}
     >
       <Modal.Content className="createCont">
         <Form className="formC" loading={isLoading}>
