@@ -1,91 +1,113 @@
-import React, {useState} from 'react';
-import { Form, Button, Message, Modal, Input } from 'semantic-ui-react';
-import {useMutation} from '@apollo/react-hooks';
-import {LOGIN} from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import React, { useState } from "react";
+import { Form, Button, Message, Modal, Input } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import { LOGIN } from "../../utils/mutations";
+import Auth from "../../utils/auth";
+import "./login.css";
 
+const LoginForm = () => {
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    password: "",
+  });
 
-const LoginForm = ()=>{
+  // set loginUser as mutation
+  const [loginUser, loginError] = useMutation(LOGIN);
 
-    const [userFormData, setUserFormData] = useState({ username: '',password: '' });
+  const [isLoading, setLoading] = useState(false);
 
-    // set loginUser as mutation
-    const [loginUser, loginError] = useMutation(LOGIN);
+  const [showAlert, setShowAlert] = useState(false);
+  // using error to show alert, check only when there's an error
+  // useEffect(() => {
+  //     if (error) setShowAlert(true);
+  //     else setShowAlert(false);
+  // }, [loginError]);
 
-    const [isLoading, setLoading]=useState(false);
+  const [open, setOpen] = useState(false); // For Modal
 
-    const [showAlert, setShowAlert] = useState(false);
-    // using error to show alert, check only when there's an error
-    // useEffect(() => {
-    //     if (error) setShowAlert(true);
-    //     else setShowAlert(false);
-    // }, [loginError]);
+  const inlineStyle = {
+    modal: {
+      height: "auto",
+      top: "auto",
+      left: "auto",
+      bottom: "auto",
+      right: "auto",
+      width: "305px",
+    },
+  };
 
-    const [open, setOpen] = useState(false); // For Modal
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await loginUser({
+        variables: { ...userFormData },
+      });
 
-    const inlineStyle = {
-        modal : {
-          height: 'auto',
-          top: 'auto',
-          left: 'auto',
-          bottom: 'auto',
-          right: 'auto',
-          width:'300px',
-        }
-      };
-
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const response = await loginUser(
-              { 
-                variables: {...userFormData}
-              });
-              
-            const token= response.data.login.token;
-            // console.log(token);
-            Auth.login(token);
-            setOpen(false);
-        } catch (err) {
-            setLoading(false);
-            setShowAlert(true);
-        }
+      const token = response.data.login.token;
+      // console.log(token);
+      Auth.login(token);
+      setOpen(false);
+    } catch (err) {
+      setLoading(false);
+      setShowAlert(true);
     }
-    const handleInput = (event) => {
-        const { name, value } = event.target;
-        setUserFormData({ ...userFormData, [name]: value });
-    };
+  };
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
-    return (
-        <Modal onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open} style={inlineStyle.modal}
-        trigger={<Button color = {'green'}> Login</Button> }>
-            <Modal.Content>
-                <Form loading={isLoading} >
-                    <Form.Field
-                        control={Input}
-                        label='Username'
-                        name='username'
-                        onChange={handleInput}
-                        placeholder='Username'
-                    />
-                    <Form.Field
-                        control={Input}
-                        label='Password'
-                        name='password'
-                        type = {'password'}
-                        onChange={handleInput}
-                        placeholder='Password'
-                    />
-                     {showAlert?(<Message negative header='Bad Request' content='Please check your creditials'/>):(<></>)}
-                    <Form.Field fluid control={Button} color = {'blue'} onClick={handleSubmit}>Submit</Form.Field>
-                </Form>
-            </Modal.Content>
+  return (
+    <Modal
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      style={inlineStyle.modal}
+      trigger={<Button className="btn-cust"> Login</Button>}
+    >
+      <Modal.Content>
+        <Form loading={isLoading}>
+          <div className="form-heading">
+            <h1>Login</h1>
+          </div>
 
-        </Modal>
-    )
-}
+          <Form.Field
+            control={Input}
+            label="Username"
+            name="username"
+            onChange={handleInput}
+            placeholder="Username"
+          />
+          <Form.Field
+            control={Input}
+            label="Password"
+            name="password"
+            type={"password"}
+            onChange={handleInput}
+            placeholder="Password"
+          />
+          {showAlert ? (
+            <Message
+              negative
+              header="Bad Request"
+              content="Please check your creditials"
+            />
+          ) : (
+            <></>
+          )}
+          <Form.Field
+            fluid
+            control={Button}
+            color={"blue"}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Form.Field>
+        </Form>
+      </Modal.Content>
+    </Modal>
+  );
+};
 
 export default LoginForm;
