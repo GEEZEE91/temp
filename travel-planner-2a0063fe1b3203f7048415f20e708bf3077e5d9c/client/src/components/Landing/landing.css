@@ -2,6 +2,9 @@
 
 body{
   background: #e9ecef;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   /* max-width: 100dvh; */
 }
 .container{
@@ -55,11 +58,11 @@ img{
   width: 100%;
   }
   .lowBtn{
-    display: block;
-    position: relative;
-    margin-top: 100px;
+  
+  top: 78%;
+  position: absolute;
+  left: 46%;
   }
-
 
   .land-header{
     font-family: 'Noto Sans', sans-serif;
