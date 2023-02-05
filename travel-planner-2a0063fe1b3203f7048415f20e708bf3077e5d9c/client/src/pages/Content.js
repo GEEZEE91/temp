@@ -3,6 +3,7 @@ import Amadeus from "amadeus";
 import SavedTrips from "../components/SavedTrips";
 import Landing from "../components/Landing";
 import Auth from "../utils/auth";
+import Cards from "./cards.js";
 
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ const Home = () => {
           <div className="container text-center mt-5">
             <SavedTrips amadeus={amadeus} />
           </div>
+          <Cards />
         </>
       )}
     </>
