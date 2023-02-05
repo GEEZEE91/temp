@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto', sans-serif;
+}
 /* :root {
   --primary: #232F3E;
   --secondary: #F3A847;
