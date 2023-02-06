@@ -7,7 +7,8 @@ import NumberInput from "../CustomFields/NumberInput";
 const HotelSearchForm = ({ amadeus, setSearchResult }) => {
   const [searchData, setSearchData] = useState({
     radius: "20",
-    currencyCode: "AUD",
+    Units: "KM",
+    hotelSource: "ALL"
   });
   // The object that'll hold all the query parameter. Preset to at most 20km away from airport
   const [isLoading, setLoading] = useState(false);
@@ -30,10 +31,9 @@ const HotelSearchForm = ({ amadeus, setSearchResult }) => {
   };
 
   const handleSubmit = () => {
-    // if (searchData.originLocationCode && searchData.destinationLocationCode && searchData.departureDate && searchData.adults){
+    if (searchData.cityCode){
     setLoading(true);
-    amadeus.referenceData.locations.hotels.byCity
-      .get(searchData)
+    "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?" .get(searchData)
       .then(({ data }) => {
         // clean up duplicate price options, as the API has sorted the cheapest with shortest travel time option first
         // duplicate option is redundant
@@ -51,14 +51,10 @@ const HotelSearchForm = ({ amadeus, setSearchResult }) => {
         setError(true);
       });
     // }
-    // console.log(searchData);
-  };
+    console.log(searchData);
+  };}
 
-  const rating = [2, 3, 4, 5];
-  const handleRate = (e, { rating }) => {
-    // console.log(rating);
-    // Will be added later
-  };
+
 
   return (
     <Modal
@@ -77,41 +73,40 @@ const HotelSearchForm = ({ amadeus, setSearchResult }) => {
             setSearchData={setSearchData}
             amadeus={amadeus}
           />
-          <Form.Group widths="equal">
+          {/* <Form.Group widths="equal">
             <DateInput
               type={"Check in"}
               name={"checkInDate"}
               searchData={searchData}
               setSearchData={setSearchData}
-              isRequired
             />
             <DateInput
               type={"Check out"}
               name={"checkOutDate"}
               searchData={searchData}
               setSearchData={setSearchData}
-              isRequired
-            />
-          </Form.Group>
-          <Form.Group widths="equal">
+              
+          //   /> */}
+          {/* // </Form.Group> */}
+
             {/* <NumberInput type={'Maximum distance from airport (miles)'} name = {'radius'}
                         searchData={searchData} setSearchData={setSearchData}
                         isRequired/> */}
-            <NumberInput
-              type={"Number of guests"}
-              name={"adults"}
-              searchData={searchData}
-              setSearchData={setSearchData}
-              isRequired
-            />
-            <NumberInput
-              type={"Number of rooms"}
-              name={"roomQuantity"}
-              searchData={searchData}
-              setSearchData={setSearchData}
-              isRequired
-            />
-          </Form.Group>
+{/*         
+          //     type={"Number of guests"}
+          //     name={"adults"}
+          //     searchData={searchData}
+          //     setSearchData={setSearchData}
+              
+          //   />
+          //   <NumberInput */}
+          {/* //     type={"Number of rooms"}
+          //     name={"roomQuantity"}
+          //     searchData={searchData}
+          //     setSearchData={setSearchData}
+              
+          //   /> */}
+
           {/* <Form.Group widths='equal'> */}
           {/* <div style={{fontWeight: 'bold', marginBottom:'10px'}}>Minimum rating: <Rating icon='star' defaultRating={1} maxRating={5} onRate={handleRate}/></div> */}
           {error ? (

@@ -28,10 +28,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <nav className="navbar bg-dark d-flex justify-content-center align-items-end">
-        <h1 className="p-2 text-light text-center m-0">Traveller Mate</h1>
+      <nav className="navbar bg-dark d-flex ">
+        <h1 className="p-3 text-light text-center ml">Traveller Mate</h1>
         {Auth.loggedIn() && (
-          <button className="text-light btn btn-dark" onClick={Auth.logout}>
+          <button className="btn-primary justify-content-center p-2 " onClick={Auth.logout}>
             Logout
           </button>
         )}

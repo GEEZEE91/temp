@@ -58,7 +58,7 @@ const FlightDetail = ({flightResult, activeIndex, setActiveIndex, tripID})=>{
                         return (i === validatingAirlineCodes.length-1)?airline : `${airline}, `
                     })}
 
-                    {', '}{grandTotal}{' '}{currency}
+                    { }{grandTotal}{' '}{currency}
             </Accordion.Title>
             <Accordion.Content active={activeIndex === id}>
                 {/* Departure and returning */}

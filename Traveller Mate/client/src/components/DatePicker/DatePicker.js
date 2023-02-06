@@ -1,48 +1,63 @@
-import React, { Component } from "react";
-import "react-dates/initialize";
-import {
-  DateRangePicker
-  // SingleDatePicker,
-  // DayPickerRangeController
-} from "react-dates";
-import "react-dates/lib/css/_datepicker.css";
+import React, { useEffect, useRef } from "react";
+import { makeStyles } from "@material-ui/core";
+import { DatePicker } from "@material-ui/pickers";
+import dayjs from "dayjs";
 
-class DatePicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: null,
-      endDate: null
-    };
-  }
+const useStyles = makeStyles((theme) => ({
+  datePickersContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: theme.spacing(2),
+    width: "100%",
+  },
+  datePicker: {
+    flex: 1,
+  },
+  spacer: {
+    width: theme.spacing(2),
+  },
+}));
+const DateFilters = ({
+  checkInDate,
+  checkOutDate,
+  setCheckOutDate,
+  setCheckInDate,
+}) => {
+  const classes = useStyles();
+  const minCheckIn = useRef(dayjs());
 
-  onDatesChange = (startDate, endDate) => {};
-
-  render() {
-    return (
-      <div>
-        <DateRangePicker
-          startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-          startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-          endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-          endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-          onDatesChange={
-            ({ startDate, endDate }) => {
-              this.setState({ startDate, endDate });
-              this.props.onEvent(startDate, endDate);
-            }
-
-            //this.props.setDate(startDate, endDate)
-          } // PropTypes.func.isRequired,
-          onClose={this.onDatesChange}
-          focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-          onFocusChange={focusedInput => {
-            this.setState({ focusedInput });
-          }} // PropTypes.func.isRequired,
-        />
-      </div>
+  useEffect(() => {
+    const minCheckOutDate = checkInDate.add(1, "day");
+    setCheckOutDate(
+      +minCheckOutDate > +checkOutDate ? minCheckOutDate : checkOutDate
     );
-  }
-}
+  }, [checkInDate, checkOutDate, setCheckOutDate]);
 
-export default DatePicker;
+  return (
+    <div className={classes.datePickersContainer}>
+      <DatePicker
+        autoOk
+        variant="inline"
+        inputVariant="outlined"
+        label="Check In"
+        value={checkInDate}
+        minDate={minCheckIn.current}
+        onChange={(date) => setCheckInDate(date)}
+        className={classes.datePicker}
+      />
+      <div className={classes.spacer} />
+      <DatePicker
+        autoOk
+        variant="inline"
+        inputVariant="outlined"
+        label="Check Out"
+        value={checkOutDate}
+        minDate={checkInDate.add(1, "day")}
+        onChange={(date) => setCheckOutDate(date)}
+        className={classes.datePicker}
+      />
+    </div>
+  );
+};
+
+export { DateFilters };

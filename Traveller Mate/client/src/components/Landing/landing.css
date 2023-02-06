@@ -2,7 +2,9 @@
 
 body{
   background: #e9ecef;
-  /* max-width: 100dvh; */
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .container{
   display: flex;
@@ -21,8 +23,9 @@ body{
   text-align: center;
   background: #e9ecef;
 }
-img{
+video{
     /* display: flex; */
+    margin-top: 0%;
     user-select:none;
     pointer-events:none;
     -webkit-user-drag: none;
@@ -56,9 +59,9 @@ img{
   width: 100%;
   }
   .lowBtn{
-    display: block;
-    position: relative;
-    margin-top: 100px;
+    top: 78%;
+    position: absolute;
+    left: 46%;
   }
 
 
