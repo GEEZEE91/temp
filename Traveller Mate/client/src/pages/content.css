@@ -1,29 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
-
 body
 {
-  
   font-family: arial
 }
-
 .fl-left{
   float: left;
 }
-
-
 .fl-right{float: right}
-
 .cont{
   width: 100%;
   margin: 10px auto;
-  
 }
-
 small{
   font-size: 0.86rem;
 }
-
-
 h2.SV
 {
   text-transform: uppercase;
@@ -32,7 +22,6 @@ h2.SV
   padding-left: 10px;
   margin-bottom: 30px
 }
-
 .row1{
   overflow: hidden;
   justify-content: center;
@@ -40,7 +29,6 @@ h2.SV
   width: 50%;
   border: 1px solid #44444234;
   margin: auto;}
-
 .card1
 {
   display: table-row;
@@ -54,18 +42,15 @@ h2.SV
   position: relative;
   letter-spacing: 1px;
 }
-
 .card1 + .card1{margin-left: 2%}
-
 .date
 {
   display: table-cell;
   width: 25%;
   position: relative;
   text-align: center;
-  border-right: 2px dashed #dadde6
+  border-right: 2px dashed #DADDE6
 }
-
 .date:before,
 .date:after
 {
@@ -80,13 +65,11 @@ h2.SV
   z-index: 1;
   border-radius: 50%
 }
-
 .date:after
 {
   top: auto;
   bottom: -15px
 }
-
 .date time
 {
   display: block;
@@ -97,23 +80,19 @@ h2.SV
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%)
 }
-
 .date time span{display: block}
-
 .date time span:first-child
 {
-  color: #2b2b2b;
+  color: #2B2B2B;
   font-weight: 600;
   font-size: 250%
 }
-
 .date time span:last-child
 {
   text-transform: uppercase;
   font-weight: 600;
   margin-top: 10px
 }
-
 .card-cont
 {
   display: table-cell;
@@ -121,49 +100,39 @@ h2.SV
   font-size: 85%;
   padding: 10px 10px 30px 50px
 }
-
 .card-cont h3
 {
   color: #3C3C3C;
   font-size: 150%
 }
-
 .row1:last-child .card1:last-of-type .card-cont h3
 {
   /* text-decoration: line-through */
-  
 }
-
 .card-cont > div
 {
   display: table-row
 }
-
 .card-cont .even-date i,
 .card-cont .even-info i,
 .card-cont .even-date time,
 .card-cont .even-info p
 {
   display: table-cell;
-  
 }
-
 .card-cont .even-date i,
 .card-cont .even-info i
 {
   padding: 5% 5% 0 0
 }
-
 .card-cont .even-info p
 {
   padding: 30px 50px 0 0
 }
-
 .card-cont .even-date time span
 {
   display: block
 }
-
 .card-cont a
 {
   display: block;
@@ -179,19 +148,19 @@ h2.SV
   right: 10px;
   bottom: 10px
 }
-
 .row1:last-child .card1:first-child .card-cont a
 {
   background-color: #037FDD
 }
-
 .row1:last-child .card1:last-child .card-cont a
 {
-  background-color: #ff2c28
+  background-color: #FF2C28
 }
-
-@media screen and (max-width: 860px)
+@media screen and (max-width: 956px)
 {
+  .row1{
+    width: 100%;
+  }
   .card1
   {
     display: block;
@@ -199,9 +168,7 @@ h2.SV
     width: 100%;
     margin-bottom: 10px
   }
-  
   .card1 + .card1{margin-left: 0}
-  
   .card-cont .even-date,
   .card-cont .even-info
   {

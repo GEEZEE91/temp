@@ -6,9 +6,8 @@ import NumberInput from "../CustomFields/NumberInput";
 
 const HotelSearchForm = ({ amadeus, setSearchResult }) => {
   const [searchData, setSearchData] = useState({
-    radius: "20",
-    Units: "KM",
-    hotelSource: "ALL"
+    // radius: "20",
+    // currencyCode: "AUD",
   });
   // The object that'll hold all the query parameter. Preset to at most 20km away from airport
   const [isLoading, setLoading] = useState(false);
@@ -31,9 +30,9 @@ const HotelSearchForm = ({ amadeus, setSearchResult }) => {
   };
 
   const handleSubmit = () => {
-    if (searchData.cityCode){
+    if (searchData.cityCodes){
     setLoading(true);
-    "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?" .get(searchData)
+    amadeus.referenceData.recommendedLocations      .get(searchData)
       .then(({ data }) => {
         // clean up duplicate price options, as the API has sorted the cheapest with shortest travel time option first
         // duplicate option is redundant
@@ -68,7 +67,7 @@ const HotelSearchForm = ({ amadeus, setSearchResult }) => {
         <Form className="formC" loading={isLoading}>
           <AirportSearch
             type={"Arrival"}
-            name={"cityCode"}
+            name={"cityCodes"}
             searchData={searchData}
             setSearchData={setSearchData}
             amadeus={amadeus}
